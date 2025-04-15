@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartChoice - Înregistrare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="reg.css">
+    <script src="reg.js" defer></script>
+    <style>
+        body {
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "SmartChoice";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.05);
+            z-index: -1;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Înregistrare</h2>
+        <form id="registerForm" onsubmit="return handleSubmit(event)">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required><br>
+    
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@gmail.com" required><br>
+    
+            <label for="password">Parolă</label>
+            <div class="password-wrapper">
+                <input type="password" id="password" name="password" required
+                    minlength="8"
+                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&+=;:,]).{8,}">
+                    <span id="toggleParola" onclick="afiseazaParola()">
+                        <i id="eye-icon" class="fa-solid fa-eye"></i>
+                    </span>
+            </div>
+    
+            <button type="submit">Înregistrare</button>
+        </form>
+    
+        <p>Ai deja cont? <a href="../autentificare/auth.html">Autentifică-te</a></p>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Here you would typically handle the form data, send it to a server, etc.
+            // For now, we'll just redirect to the main page
+            window.location.href = '../continut/cont.html';
+            return false;
+        }
+    </script>
+</body>
+</html>

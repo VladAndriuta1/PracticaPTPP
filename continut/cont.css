@@ -1,0 +1,77 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #43cea2, #185a9d);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: #fff;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #185a9d;
+    margin-bottom: 30px;
+  }
+  
+  .search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .search-bar button {
+    padding: 12px 20px;
+    background-color: #43cea2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .results {
+    margin-top: 20px;
+  }
+  
+  .product {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .product h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #185a9d;
+  }
+  
+  .product p {
+    margin: 5px 0;
+  }
+  
+  /* Responsive adjustments for navbar integration */
+  @media screen and (max-width: 768px) {
+    .container {
+      margin-top: 30px;
+      width: 95%;
+    }
+  }
+  
