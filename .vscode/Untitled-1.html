@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Persistență locală</title>
+</head>
+<body>
+  <h2>Introdu un text:</h2>
+  <input type="text" id="camp" placeholder="Scrie aici..." />
+
+  <script>
+    const input = document.getElementById("camp");
+
+    // La încărcare: extrage și setează valoarea salvată
+    window.addEventListener("load", () => {
+      const valoareSalvata = localStorage.getItem("textIntrodus");
+      if (valoareSalvata) {
+        input.value = valoareSalvata;
+      }
+    });
+
+    // La fiecare modificare: salvează automat în localStorage
+    input.addEventListener("input", () => {
+      localStorage.setItem("textIntrodus", input.value);
+    });
+  </script>
+</body>
+</html>

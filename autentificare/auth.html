@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartChoice - Autentificare</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="auth.css">
-    <script src="auth.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             position: relative;
@@ -26,37 +25,60 @@
             white-space: nowrap;
             pointer-events: none;
         }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo a {
+            color: #185a9d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .logo a:hover {
+            color: #43cea2;
+        }
     </style>
 </head>
 <body>
+    <div class="logo">
+        <a href="../index.html">SmartChoice</a>
+    </div>
+    
     <div class="form-container">
         <h2>Autentificare</h2>
-        <form id="loginForm" onsubmit="return handleSubmit(event)">
-            <label for="username">Username sau Email</label>
-            <input type="text" id="username" name="username" required><br>
-
-            <label for="password">Parolă</label>
-            <div class="password-wrapper">
-                <input type="password" id="password" name="password" required>
-                <span id="toggleParola" onclick="afiseazaParola()">
-                    <i id="eye-icon" class="fa-solid fa-eye"></i>
-                </span>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username sau Email</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error-message" id="username-error"></div>
             </div>
 
-            <button type="submit">Autentificare</button>
+            <div class="form-group">
+                <label for="password">Parolă</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" required>
+                    <span id="toggleParola">
+                        <i id="eye-icon" class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+                <div class="error-message" id="password-error"></div>
+            </div>
+
+            <button type="submit" id="loginButton">
+                <span class="button-text">Autentificare</span>
+                <div class="spinner" id="loginSpinner"></div>
+            </button>
         </form>
 
         <p>Nu ai cont? <a href="../inregistrare/reg.html">Înregistrează-te</a></p>
     </div>
 
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            // Here you would typically handle the form data, validate credentials, etc.
-            // For now, we'll just redirect to the main page
-            window.location.href = '../continut/cont.html';
-            return false;
-        }
-    </script>
+    <script src="auth.js"></script>
 </body>
 </html>

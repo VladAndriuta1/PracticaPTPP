@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,9 +26,31 @@
             white-space: nowrap;
             pointer-events: none;
         }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo a {
+            color: #185a9d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .logo a:hover {
+            color: #43cea2;
+        }
     </style>
 </head>
 <body>
+    <div class="logo">
+        <a href="../index.html">SmartChoice</a>
+    </div>
+    
     <div class="form-container">
         <h2>Înregistrare</h2>
         <form id="registerForm" onsubmit="return handleSubmit(event)">
@@ -53,15 +75,5 @@
     
         <p>Ai deja cont? <a href="../autentificare/auth.html">Autentifică-te</a></p>
     </div>
-
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            // Here you would typically handle the form data, send it to a server, etc.
-            // For now, we'll just redirect to the main page
-            window.location.href = '../continut/cont.html';
-            return false;
-        }
-    </script>
 </body>
 </html>
