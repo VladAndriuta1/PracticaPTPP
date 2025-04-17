@@ -6,7 +6,9 @@
   <title>SmartChoice</title>
   <link rel="stylesheet" href="../navbar/navbar.css">
   <link rel="stylesheet" href="cont.css">
-  <link rel="stylesheet" href="/continut/profile/profile.html"
+  <link rel="stylesheet" href="../footer/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Navbar -->
@@ -16,17 +18,15 @@
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
-      </div>
+      </div>                  
       <div class="logo">
-        <a href="../index.html">SmartChoice</a>
+        <a href="../continut/cont.html">SmartChoice</a>
       </div>
     </div>
 
     <ul class="nav-links">
-      <li><a href="#">Acasă</a></li>
       <li><a href="#">Produse</a></li>
       <li><a href="profile/profile.html">Profile</a></li>
-      <li><a href="#">Support</a></li>
       <li><a href="#">Settings</a></li>
       <li><a href="#">Contacts</a></li>
       <li><a href="#">About</a></li>
@@ -42,12 +42,74 @@
       <button onclick="cautaProdus()">Caută</button>
     </div>
 
+    <!-- Product Selection Feature -->
+    <div class="product-selector">
+      <h2>Selectează un Produs</h2>
+      <div class="selector-group">
+        <label for="category-select">Categorie:</label>
+        <select id="category-select">
+          <option value="">Selectați o categorie</option>
+        </select>
+      </div>
+      
+      <div class="selector-group">
+        <label for="brand-select">Brand:</label>
+        <select id="brand-select" disabled>
+          <option value="">Selectați un brand</option>
+        </select>
+      </div>
+      
+      <div class="selector-group">
+        <label for="model-select">Model:</label>
+        <select id="model-select" disabled>
+          <option value="">Selectați un model</option>
+        </select>
+      </div>
+    </div>
+    
+    <div id="product-details" class="product-details">
+      <!-- Product details will be displayed here -->
+    </div>
+
     <div class="results" id="results">
       <!-- Rezultatele vor apărea aici -->
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo" aria-label="Footer">
+    <div class="footer-container">
+      <div class="footer-section about">
+        <h3>SmartChoice</h3>
+        <p>Găsiți cele mai bune prețuri pentru produsele dorite în magazinele din Moldova.</p>
+      </div>
+      
+      <div class="footer-section contact">
+        <h3>Contact</h3>
+        <address>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Chișinău, Moldova</p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+37322123456">+373 22 123 456</a></p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:contact@smartchoice.md">contact@smartchoice.md</a></p>
+        </address>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; <span class="copyright-year"></span> SmartChoice. Toate drepturile rezervate.</p>
+      <nav aria-label="Legal links">
+        <ul class="legal-links">
+          <li><a href="/privacy">Confidențialitate</a></li>
+          <li><a href="/terms">Termeni</a></li>
+          <li><a href="/cookies">Cookie-uri</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
   <script src="../navbar/navbar.js"></script>
+  <script src="models/products.js"></script>
+  <script src="js/product-selector.js"></script>
   <script src="cont.js"></script>
+  <script src="../footer/footer.js"></script>
 </body>
 </html>

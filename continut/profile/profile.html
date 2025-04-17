@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../navbar/navbar.css">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -18,18 +19,16 @@
                 <span class="bar"></span>
             </div>
             <div class="logo">
-                <a href="../../index.html">SmartChoice</a>
+                <a href="../cont.html">SmartChoice</a>
             </div>
         </div>
     
         <ul class="nav-links">
-            <li><a href="#">Acasă</a></li>
-            <li><a href="#">Produse</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Contacts</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="../cont.html">Produse</a></li>
+            <li><a href="profile.html" class="active">Profil</a></li>
+            <li><a href="#">Setări</a></li>
+            <li><a href="#">Contacte</a></li>
+            <li><a href="#">Despre</a></li>
             <li><a href="#" id="disconnect-btn">Deconectare</a></li>
         </ul>
     </nav>
@@ -43,8 +42,42 @@
                         <i class="fas fa-camera"></i>
                     </div>
                 </div>
-                <h1 id="user-name">Nume Utilizator</h1>
-                <p id="user-email">email@example.com</p>
+                <div class="user-info">
+                    <h1 id="user-name">Nume Utilizator</h1>
+                    <p id="user-email">email@example.com</p>
+                    <span id="user-role">Membru</span>
+                </div>
+            </div>
+            
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="personal">Informații Personale</button>
+                <button class="tab-btn" data-tab="preferences">Preferințe</button>
+            </div>
+            
+            <div class="tab-content active" id="personal-tab">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nume Complet</span>
+                        <span id="user-fullname">Nume Prenume</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Telefon</span>
+                        <span id="user-phone">+373 22 123 456</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Adresa</span>
+                        <span id="user-address">Chișinău, Moldova</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="preferences-tab">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Data Înregistrării</span>
+                        <span id="user-registration-date">01.01.2023</span>
+                    </div>
+                </div>
             </div>
             
             <div class="profile-actions">
@@ -53,9 +86,6 @@
                 </button>
                 <button class="action-btn change-password-btn">
                     <i class="fas fa-key"></i> Schimbă Parola
-                </button>
-                <button class="action-btn disconnect-btn" id="profile-disconnect-btn">
-                    <i class="fas fa-sign-out-alt"></i> Deconectare
                 </button>
             </div>
         </div>

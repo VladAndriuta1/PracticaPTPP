@@ -4,17 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartChoice - Compară Prețuri între Magazine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="footer/footer.css">
     <style>
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0;
+            min-height: calc(100vh - 200px); /* Adjust based on footer height */
         }
         
         .container {
@@ -25,6 +38,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             width: 90%;
+            margin: 2rem;
         }
         
         .logo {
@@ -92,6 +106,7 @@
         @media (max-width: 768px) {
             .container {
                 padding: 1.5rem;
+                margin: 1rem;
             }
             
             .logo {
@@ -109,15 +124,50 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="logo">SmartChoice</a>
-        <h1>Compară Prețuri între Magazine</h1>
-        <p>SmartChoice este platforma ta pentru a găsi cele mai bune oferte și a compara prețurile între diferite magazine. Economisește timp și bani găsind produsele la cel mai bun preț.</p>
-        
-        <div class="buttons">
-            <a href="inregistrare/reg.html" class="btn btn-primary">Înregistrare</a>
-            <a href="autentificare/auth.html" class="btn btn-secondary">Autentificare</a>
+    <div class="main-content">
+        <div class="container">
+            <a href="" class="logo">SmartChoice</a>
+            <h1>Compară Prețuri între Magazine</h1>
+            <p>SmartChoice este platforma ta pentru a găsi cele mai bune oferte și a compara prețurile între diferite magazine. Economisește timp și bani găsind produsele la cel mai bun preț.</p>
+            <p>Cauți. Compari. Cumperi inteligent.</p>
+            
+            <div class="buttons">
+                <a href="inregistrare/reg.html" class="btn btn-primary">Înregistrare</a>
+                <a href="autentificare/auth.html" class="btn btn-secondary">Autentificare</a>
+            </div>
         </div>
     </div>
+
+    <!-- Include Footer -->
+    <footer class="footer" role="contentinfo" aria-label="Footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h3>SmartChoice</h3>
+                <p>Găsiți cele mai bune prețuri pentru produsele dorite în magazinele din Moldova.</p>
+            </div>
+            
+            <div class="footer-section contact">
+                <h3>Contact</h3>
+                <address>
+                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Chișinău, Moldova</p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+37322123456">+373 22 123 456</a></p>
+                    <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:contact@smartchoice.md">contact@smartchoice.md</a></p>
+                </address>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span class="copyright-year"></span> SmartChoice. Toate drepturile rezervate.</p>
+            <nav aria-label="Legal links">
+                <ul class="legal-links">
+                    <li><a href="/privacy">Confidențialitate</a></li>
+                    <li><a href="/terms">Termeni</a></li>
+                    <li><a href="/cookies">Cookie-uri</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="footer/footer.js"></script>
 </body>
 </html> 

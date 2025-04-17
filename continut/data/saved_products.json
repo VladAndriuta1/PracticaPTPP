@@ -1,0 +1,31 @@
+{
+  "savedProducts": [
+    {
+      "id": "1",
+      "userId": "1",
+      "nume": "Laptop HP 15.6\"",
+      "magazin": "Darwin",
+      "pret": 12999,
+      "link": "https://darwin.md/ro/12345678",
+      "data": "2023-05-15T10:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "nume": "Samsung Galaxy A54",
+      "magazin": "Bomba",
+      "pret": 9699,
+      "link": "https://bomba.md/ro/12345678",
+      "data": "2023-06-20T14:45:00.000Z"
+    },
+    {
+      "id": "3",
+      "userId": "2",
+      "nume": "Smart TV Samsung 43\"",
+      "magazin": "Enter",
+      "pret": 8799,
+      "link": "https://enter.md/ro/12345678",
+      "data": "2023-07-05T09:15:00.000Z"
+    }
+  ]
+} 

@@ -1,66 +1,181 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-    const user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
     
-    if (!isAuthenticated || !user) {
-        // Redirect to login page if not authenticated
-        window.location.href = '../../autentificare/auth.html';
-        return;
+    // If no user in storage, try to load from JSON file
+    if (!user) {
+        fetch('../data/users.json')
+            .then(response => response.json())
+            .then(data => {
+                // For demo purposes, use the first user
+                if (data.users && data.users.length > 0) {
+                    user = data.users[0];
+                    localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('isAuthenticated', 'true');
+                    populateUserData(user);
+                } else {
+                    // Redirect to login page if no users found
+                    window.location.href = '../../autentificare/auth.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading user data:', error);
+                // Redirect to login page if fetch fails
+                window.location.href = '../../autentificare/auth.html';
+            });
+    } else {
+        // User already in storage, populate data
+        populateUserData(user);
     }
     
-    // Populate user data
-    document.getElementById('user-name').textContent = user.username || 'Nume Utilizator';
-    document.getElementById('user-email').textContent = user.email || 'email@example.com';
+    // Function to populate user data in the UI
+    function populateUserData(user) {
+        document.getElementById('user-name').textContent = user.username || 'Nume Utilizator';
+        document.getElementById('user-email').textContent = user.email || 'email@example.com';
+        document.getElementById('user-role').textContent = user.role || 'Membru';
+        document.getElementById('user-fullname').textContent = user.fullName || 'Nume Prenume';
+        document.getElementById('user-phone').textContent = user.phone || '+373 22 123 456';
+        document.getElementById('user-address').textContent = user.address || 'Chișinău, Moldova';
+        document.getElementById('user-registration-date').textContent = user.registrationDate || '01.01.2023';
+        
+        // Set avatar if available
+        if (user.avatar) {
+            document.getElementById('user-avatar').src = user.avatar;
+        }
+    }
+    
+    // Tab functionality
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Show corresponding content
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+    });
     
     // Edit profile functionality
     const editBtn = document.querySelector('.edit-btn');
     editBtn.addEventListener('click', function() {
-        // Create edit form for username and email
-        const userNameElement = document.getElementById('user-name');
-        const userEmailElement = document.getElementById('user-email');
+        if (editBtn.classList.contains('saving')) {
+            saveProfileChanges();
+            return;
+        }
         
-        const userName = userNameElement.textContent;
-        const userEmail = userEmailElement.textContent;
+        // Create edit form for all user fields
+        const userFields = [
+            { id: 'user-name', label: 'Nume Utilizator', type: 'text' },
+            { id: 'user-email', label: 'Email', type: 'email' },
+            { id: 'user-fullname', label: 'Nume Complet', type: 'text' },
+            { id: 'user-phone', label: 'Telefon', type: 'tel' },
+            { id: 'user-address', label: 'Adresa', type: 'text' }
+        ];
         
-        // Create input fields
-        const nameInput = document.createElement('input');
-        nameInput.type = 'text';
-        nameInput.value = userName;
-        nameInput.className = 'edit-input';
-        nameInput.id = 'edit-username';
+        // Create edit form
+        const editForm = document.createElement('form');
+        editForm.id = 'edit-profile-form';
+        editForm.className = 'edit-form';
         
-        const emailInput = document.createElement('input');
-        emailInput.type = 'email';
-        emailInput.value = userEmail;
-        emailInput.className = 'edit-input';
-        emailInput.id = 'edit-email';
+        userFields.forEach(field => {
+            const formGroup = document.createElement('div');
+            formGroup.className = 'form-group';
+            
+            const label = document.createElement('label');
+            label.htmlFor = `edit-${field.id.replace('user-', '')}`;
+            label.textContent = field.label;
+            
+            let input;
+            
+            if (field.type === 'select') {
+                input = document.createElement('select');
+                field.options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    if (document.getElementById(field.id).textContent === option) {
+                        optionElement.selected = true;
+                    }
+                    input.appendChild(optionElement);
+                });
+            } else if (field.type === 'toggle') {
+                const toggleContainer = document.createElement('div');
+                toggleContainer.className = 'toggle-container';
+                
+                input = document.createElement('input');
+                input.type = 'checkbox';
+                input.id = `edit-${field.id.replace('user-', '')}`;
+                input.className = 'toggle-input';
+                input.checked = document.getElementById(field.id).textContent === 'Activate';
+                
+                const toggleSlider = document.createElement('span');
+                toggleSlider.className = 'toggle-slider';
+                
+                toggleContainer.appendChild(input);
+                toggleContainer.appendChild(toggleSlider);
+                
+                formGroup.appendChild(label);
+                formGroup.appendChild(toggleContainer);
+                editForm.appendChild(formGroup);
+                return;
+            } else {
+                input = document.createElement('input');
+                input.type = field.type;
+                input.value = document.getElementById(field.id).textContent;
+            }
+            
+            input.id = `edit-${field.id.replace('user-', '')}`;
+            input.className = 'edit-input';
+            
+            formGroup.appendChild(label);
+            formGroup.appendChild(input);
+            editForm.appendChild(formGroup);
+        });
         
-        // Replace text with inputs
-        userNameElement.textContent = '';
-        userNameElement.appendChild(nameInput);
+        // Create form actions
+        const formActions = document.createElement('div');
+        formActions.className = 'form-actions';
         
-        userEmailElement.textContent = '';
-        userEmailElement.appendChild(emailInput);
+        const cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.className = 'cancel-btn';
+        cancelBtn.textContent = 'Anulează';
+        cancelBtn.onclick = function() {
+            location.reload();
+        };
         
-        // Change button to save
+        formActions.appendChild(cancelBtn);
+        editForm.appendChild(formActions);
+        
+        // Replace profile info with edit form
+        const activeTab = document.querySelector('.tab-content.active');
+        activeTab.innerHTML = '';
+        activeTab.appendChild(editForm);
+        
+        // Change button to saving
         editBtn.innerHTML = '<i class="fas fa-save"></i> Salvează';
         editBtn.classList.add('saving');
-        
-        // Change onclick to save function
-        editBtn.onclick = function() {
-            saveProfileChanges();
-        };
     });
     
     function saveProfileChanges() {
-        const username = document.getElementById('edit-username').value;
-        const email = document.getElementById('edit-email').value;
-        
-        // Update user data
+        // Get all edited values
         const updatedUser = { ...user };
-        updatedUser.username = username;
-        updatedUser.email = email;
+        
+        // Update user data from form
+        updatedUser.username = document.getElementById('edit-name').value;
+        updatedUser.email = document.getElementById('edit-email').value;
+        updatedUser.fullName = document.getElementById('edit-fullname').value;
+        updatedUser.phone = document.getElementById('edit-phone').value;
+        updatedUser.address = document.getElementById('edit-address').value;
         
         // Save to storage
         if (localStorage.getItem('user')) {
@@ -69,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionStorage.setItem('user', JSON.stringify(updatedUser));
         }
         
-        // Refresh page to show updated data
+        // Show success message and reload immediately
         location.reload();
     }
     
@@ -96,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="form-actions">
                         <button type="button" class="cancel-btn">Anulează</button>
-                        <button type="submit" class="save-btn">Salvează</button>
                     </div>
                 </form>
             </div>
@@ -142,8 +256,29 @@ document.addEventListener('DOMContentLoaded', function() {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('user-avatar').src = e.target.result;
-                    // Here you would typically upload the image to a server
+                    const avatarUrl = e.target.result;
+                    document.getElementById('user-avatar').src = avatarUrl;
+                    
+                    // Update user data with new avatar
+                    const updatedUser = { ...user, avatar: avatarUrl };
+                    if (localStorage.getItem('user')) {
+                        localStorage.setItem('user', JSON.stringify(updatedUser));
+                    } else {
+                        sessionStorage.setItem('user', JSON.stringify(updatedUser));
+                    }
+
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'success-message';
+                    successMessage.textContent = 'Foto de profil actualizată cu succes!';
+                    
+                    const profileCard = document.querySelector('.profile-card');
+                    profileCard.insertBefore(successMessage, profileCard.firstChild);
+                    
+                    // Remove success message after 3 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 3000);
                 };
                 reader.readAsDataURL(file);
             }
