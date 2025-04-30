@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonText = loginButton.querySelector('.button-text');
     const spinner = document.getElementById('loginSpinner');
 
-    // Toggle password visibility
+    // parola vizibila
     const togglePassword = document.querySelector('#toggleParola');
     togglePassword.addEventListener('click', function() {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         eyeIcon.classList.toggle('fa-eye-slash');
     });
 
-    // Show/hide loading state
+    
     function showLoading() {
         buttonText.style.display = 'none';
         spinner.style.display = 'block';
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElement.style.display = 'none';
     }
 
-    // Function to redirect to cont.html
+    // redirect la cont.html
     function redirectToCont() {
         window.location.href = '../continut/cont.html';
     }
@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showLoading();
 
         try {
-            // Simulate API call delay
+
             await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // Get users from localStorage
+            // verifica in localStorage
             const users = JSON.parse(localStorage.getItem('users') || '[]');
             
             // Find user by username/email and password
@@ -83,10 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
             );
 
             if (user) {
-                // Store user session
+               
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 
-                // Redirect to cont.html
                 redirectToCont();
             } else {
                 showError('username', 'Nume de utilizator sau parolă incorectă');
@@ -98,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add click event listener to the login button
+   
     loginButton.addEventListener('click', function(event) {
-        // If the form is valid, redirect to cont.html
+    
         if (usernameInput.value.trim() && passwordInput.value) {
             redirectToCont();
         }

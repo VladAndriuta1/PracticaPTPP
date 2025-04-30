@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartChoice - Produse</title>
-    <link rel="stylesheet" href="css/produse.css">
+    <link rel="stylesheet" href="produse.css">
     <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="../footer/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Include Navbar -->
-    <div id="navbar-placeholder"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="menu-icon" id="menu-icon">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>                  
+            <div class="logo">
+                <a href="../cont.html">SmartChoice</a>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="active">Produse</a></li>
+            <li><a href="../profile/profile.html">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Contacts</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#" id="disconnect-btn">Deconectare</a></li>
+        </ul>
+    </nav>
 
     <div class="container">
         <h1>Comparație Produse</h1>
@@ -40,17 +61,13 @@
         </div>
         
         <div id="product-details" class="product-details">
-            <!-- Product details will be displayed here -->
         </div>
     </div>
 
-    <!-- Include Footer -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Scripts -->
+   
     <script src="../navbar/navbar.js"></script>
     <script src="../footer/footer.js"></script>
-    <script src="models/products.js"></script>
-    <script src="js/product-selector.js"></script>
+    <script src="products.js"></script>
+    <script src="product-selector.js"></script>
 </body>
 </html> 

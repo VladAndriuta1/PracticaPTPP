@@ -26,10 +26,7 @@
 
     <ul class="nav-links">
       <li><a href="#">Produse</a></li>
-      <li><a href="profile/profile.html">Profile</a></li>
-      <li><a href="#">Settings</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="#">About</a></li>
+      <li><a href="../continut/profile/profile.html">Profile</a></li>
       <li><a href="#" id="disconnect-btn">Deconectare</a></li>
     </ul>
   </nav>
@@ -38,13 +35,10 @@
     <h1>Compară Prețuri între Magazine</h1>
 
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Caută un produs...">
+      <input type="text" id="searchInput" placeholder="Sau căutați direct un produs...">
       <button onclick="cautaProdus()">Caută</button>
     </div>
-
-    <!-- Product Selection Feature -->
     <div class="product-selector">
-      <h2>Selectează un Produs</h2>
       <div class="selector-group">
         <label for="category-select">Categorie:</label>
         <select id="category-select">
@@ -65,18 +59,16 @@
           <option value="">Selectați un model</option>
         </select>
       </div>
-    </div>
-    
-    <div id="product-details" class="product-details">
-      <!-- Product details will be displayed here -->
-    </div>
 
-    <div class="results" id="results">
-      <!-- Rezultatele vor apărea aici -->
+
+      <div id="product-details" class="product-details">
+      </div>
+
     </div>
   </div>
 
-  <!-- Footer -->
+
+
   <footer class="footer" role="contentinfo" aria-label="Footer">
     <div class="footer-container">
       <div class="footer-section about">
@@ -88,27 +80,22 @@
         <h3>Contact</h3>
         <address>
           <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Chișinău, Moldova</p>
-          <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+37322123456">+373 22 123 456</a></p>
-          <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:contact@smartchoice.md">contact@smartchoice.md</a></p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> +373 79 63 49 08</a></p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:vlad.andriuta1@gmail.com">vlad.andriuta1@gmail.com</a></p>
         </address>
       </div>
     </div>
     
     <div class="footer-bottom">
       <p>&copy; <span class="copyright-year"></span> SmartChoice. Toate drepturile rezervate.</p>
-      <nav aria-label="Legal links">
-        <ul class="legal-links">
-          <li><a href="/privacy">Confidențialitate</a></li>
-          <li><a href="/terms">Termeni</a></li>
-          <li><a href="/cookies">Cookie-uri</a></li>
-        </ul>
-      </nav>
+     
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="../navbar/navbar.js"></script>
-  <script src="models/products.js"></script>
-  <script src="js/product-selector.js"></script>
+  <script src="produse/products.js"></script>
+  <script src="produse/product-selector.js"></script>
   <script src="cont.js"></script>
   <script src="../footer/footer.js"></script>
 </body>
