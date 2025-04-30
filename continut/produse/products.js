@@ -48,6 +48,52 @@ const productModels = {
       }
     },
     {
+      id: "iPhone-15",
+      name: "iPhone 15",
+      category: "Smartphone",
+      brand: "Apple",
+      stores: {
+        darwin: {
+          price: 24999,
+          inStock: true,
+          url: "https://darwin.md/samsung-galaxy-s23-ultra-12-gb-256-gb-beige.html"
+        },
+        orange: {
+          price: 23999,
+          inStock: false,
+          url: "https://www.orange.md/ro/shop/catalog/telefoane/samsung-galaxy-s23/samsung-galaxy-s23-ultra-"
+        },
+        enter: {
+          price: 26999,
+          inStock: false,
+          url: "https://enter.online/telefoane/smartphone-uri/samsung-galaxy-s23-ultra-s918-12-gb-512-gb-5g-dual-sim-black"
+        },
+        maximum: {
+          price: 23999,
+          inStock: false,
+          url: "https://maximum.md/ro/6573102/"
+        },
+        ultra: {
+          price: 24999,
+          inStock: false,
+          url: "https://ultra.md/ru/product/s918-s23-ultra-12256gb-black"
+        },
+        bomba: {
+          price: 23999,
+          inStock: false,
+          url: "https://bomba.md/ro/product/smartphone-samsung-galaxy-s23-ultra-12-256gb-black-890803/"
+        }
+      },
+      specs: {
+        screen: "6.8 inch Dynamic AMOLED 2X",
+        processor: "Snapdragon 8 Gen 2",
+        ram: "12GB",
+        storage: "256GB",
+        camera: "200MP + 12MP + 10MP + 10MP",
+        battery: "5000mAh"
+      }
+    },
+    {
       id: "samsung-s23-ultra",
       name: "Samsung Galaxy S23 Ultra",
       category: "Smartphone",

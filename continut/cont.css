@@ -91,42 +91,7 @@ h1 {
   padding: 8px;
 }
 
-/* Search Bar */
-.search-bar {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
 
-.search-bar input {
-  flex: 1;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.search-bar input:focus {
-  outline: none;
-  border-color: #185a9d;
-  box-shadow: 0 0 0 3px rgba(24, 90, 157, 0.1);
-}
-
-.search-bar button {
-  padding: 12px 24px;
-  background-color: #43cea2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-bar button:hover {
-  background-color: #3ab793;
-}
 
 /* Product Details */
 .product-details {
@@ -393,4 +358,3 @@ h1 {
 .savings {
   display: none;
 }
-

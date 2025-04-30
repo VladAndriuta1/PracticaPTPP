@@ -1,27 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+document.addEventListener('DOMContentLoaded', function () {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (!currentUser) {
-        fetch('../data/users.json')
-            .then(response => response.json())
-            .then(data => {
-                if (data.users && data.users.length > 0) {
-                    currentUser = data.users[0];
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    localStorage.setItem('isAuthenticated', 'true');
-                    populateUserData(currentUser);
-                } else {
-                    window.location.href = '../../autentificare/auth.html';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading user data:', error);
-                window.location.href = '../../autentificare/auth.html';
-            });
-    } else {
-        populateUserData(currentUser);
+        window.location.href = '../../autentificare/auth.html';
+        return;
     }
+
+    populateUserData(currentUser);
 
     function populateUserData(user) {
         document.getElementById('user-name').textContent = user.username || 'Nume Utilizator';
@@ -46,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             tabContents.forEach(content => content.classList.remove('active'));
 
             button.classList.add('active');
-
             const tabId = button.getAttribute('data-tab');
             document.getElementById(`${tabId}-tab`).classList.add('active');
         });
@@ -226,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleDisconnect() {
         if (confirm('Sunteți sigur că doriți să vă deconectați?')) {
             localStorage.removeItem('currentUser');
-            localStorage.removeItem('isAuthenticated');
             window.location.href = '../../autentificare/auth.html';
         }
     }
