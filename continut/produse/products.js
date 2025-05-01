@@ -13,7 +13,7 @@ const productModels = {
           url: "https://darwin.md/apple-iphone-14-4-gb-128-gb-midnight.html"
         },
         orange: {
-          price: 11999,
+          price: 12599,
           inStock: true,
           url: "https://www.orange.md/ro/shop/catalog/telefoane/toate-telefoanele/iphone-14-128gb.html"
         },

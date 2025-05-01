@@ -15,7 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('user-fullname').textContent = user.fullName || 'Nume Prenume';
         document.getElementById('user-phone').textContent = user.phone || '+373 22 123 456';
         document.getElementById('user-address').textContent = user.address || 'Chișinău, Moldova';
-        document.getElementById('user-registration-date').textContent = user.registrationDate || '01.01.2023';
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            if (isNaN(date)) return 'Data necunoscută';
+            const zi = String(date.getDate()).padStart(2, '0');
+            const luna = String(date.getMonth() + 1).padStart(2, '0');
+            const an = date.getFullYear();
+            return `${zi}.${luna}.${an}`;
+        }
+        
+        document.getElementById('user-registration-date').textContent = user.createdAt ? formatDate(user.createdAt) : '01.01.2023';
 
         if (user.avatar) {
             document.getElementById('user-avatar').src = user.avatar;
@@ -49,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
             { id: 'user-fullname', label: 'Nume Complet', type: 'text' },
             { id: 'user-phone', label: 'Telefon', type: 'tel' },
             { id: 'user-address', label: 'Adresa', type: 'text' },
-            { id: 'user-registration-date', label: 'Data Înregistrării', type: 'text' }
         ];
 
         const editForm = document.createElement('form');
@@ -105,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         updatedUser.fullName = document.getElementById('edit-fullname').value;
         updatedUser.phone = document.getElementById('edit-phone').value;
         updatedUser.address = document.getElementById('edit-address').value;
-        updatedUser.registrationDate = document.getElementById('edit-registration-date').value;
 
         localStorage.setItem('currentUser', JSON.stringify(updatedUser));
 

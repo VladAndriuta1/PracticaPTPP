@@ -6,7 +6,42 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+body {
+    position: relative;
+    overflow-x: hidden;
+}
 
+body::before {
+    content: "SmartChoice";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.05);
+    z-index: -1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo a {
+    color: #185a9d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: #43cea2;
+}
 body {
     min-height: 100vh;
     display: flex;

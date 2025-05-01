@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonText = loginButton.querySelector('.button-text');
     const spinner = document.getElementById('loginSpinner');
 
-    // parola vizibila
+    // Afișare/ascundere parolă
     const togglePassword = document.querySelector('#toggleParola');
-    togglePassword.addEventListener('click', function() {
+    togglePassword.addEventListener('click', function () {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
         const eyeIcon = document.getElementById('eye-icon');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         eyeIcon.classList.toggle('fa-eye-slash');
     });
 
-    
+    // Afișare încărcare
     function showLoading() {
         buttonText.style.display = 'none';
         spinner.style.display = 'block';
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginButton.disabled = false;
     }
 
-    // Show/hide error message
+    // Mesaje eroare
     function showError(inputId, message) {
         const errorElement = document.getElementById(`${inputId}-error`);
         errorElement.textContent = message;
@@ -41,28 +41,38 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElement.style.display = 'none';
     }
 
-    // redirect la cont.html
+    // Redirecționare către cont
     function redirectToCont() {
         window.location.href = '../continut/cont.html';
     }
 
-    // Handle form submission
-    loginForm.addEventListener('submit', async function(event) {
+    // Trimitere formular
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
-        
-        // Reset previous errors
+
+        // Resetare erori
         hideError('username');
         hideError('password');
 
-        // Validate inputs
         let isValid = true;
-        if (!usernameInput.value.trim()) {
+        const usernameVal = usernameInput.value.trim();
+        const passwordVal = passwordInput.value;
+
+        // Validare câmpuri
+        if (!usernameVal) {
             showError('username', 'Introduceți numele de utilizator sau email-ul');
             isValid = false;
         }
-        if (!passwordInput.value) {
+
+        if (!passwordVal) {
             showError('password', 'Introduceți parola');
             isValid = false;
+        } else {
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&+=;:,]).{8,}$/;
+            if (!passwordPattern.test(passwordVal)) {
+                showError('password', 'Parola trebuie să aibă cel puțin 8 caractere, o literă mică, una mare, o cifră și un simbol (!@#$%&+=;:,).');
+                isValid = false;
+            }
         }
 
         if (!isValid) return;
@@ -70,22 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
         showLoading();
 
         try {
+            await new Promise(resolve => setTimeout(resolve, 1000)); // simulare întârziere
 
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // verifica in localStorage
             const users = JSON.parse(localStorage.getItem('users') || '[]');
-            
-            // Find user by username/email and password
-            const user = users.find(u => 
-                (u.username === usernameInput.value || u.email === usernameInput.value) && 
-                u.password === passwordInput.value
+            const user = users.find(u =>
+                (u.username === usernameVal || u.email === usernameVal) &&
+                u.password === passwordVal
             );
 
             if (user) {
-               
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                
                 redirectToCont();
             } else {
                 showError('username', 'Nume de utilizator sau parolă incorectă');
@@ -94,14 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             showError('username', 'A apărut o eroare. Vă rugăm să încercați din nou.');
             hideLoading();
-        }
-    });
-
-   
-    loginButton.addEventListener('click', function(event) {
-    
-        if (usernameInput.value.trim() && passwordInput.value) {
-            redirectToCont();
         }
     });
 });

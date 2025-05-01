@@ -84,10 +84,7 @@ function afiseazaParola() {
       const confirmPasswordInput = document.getElementById('confirmPassword');
       const termsCheckbox = document.getElementById('terms');
   
-      // Password strength indicator
-      const strengthIndicator = document.createElement('div');
-      strengthIndicator.className = 'password-strength';
-      passwordInput.parentNode.insertBefore(strengthIndicator, passwordInput.nextSibling);
+    
   
       // Toggle password visibility
       const togglePassword = document.querySelector('.toggle-password');
@@ -126,22 +123,6 @@ function afiseazaParola() {
           errorElement.style.display = 'none';
       }
   
-  
-      // Update password strength indicator
-      passwordInput.addEventListener('input', function() {
-          const { strength, feedback } = checkPasswordStrength(this.value);
-          const strengthText = ['Foarte slabă', 'Slabă', 'Medie', 'Puternică', 'Foarte puternică'][strength - 1] || '';
-          const strengthClass = ['very-weak', 'weak', 'medium', 'strong', 'very-strong'][strength - 1] || '';
-          
-          strengthIndicator.textContent = strengthText;
-          strengthIndicator.className = 'password-strength ' + strengthClass;
-          
-          if (this.value) {
-              strengthIndicator.style.display = 'block';
-          } else {
-              strengthIndicator.style.display = 'none';
-          }
-      });
   
       // Handle form submission
       registrationForm.addEventListener('submit', async function(event) {

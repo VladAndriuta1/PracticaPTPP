@@ -7,7 +7,7 @@
 }
 
 body {
-    background: #f0f2f5;
+    background: linear-gradient(to right, #43cea2, #185a9d);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
